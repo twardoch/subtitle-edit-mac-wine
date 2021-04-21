@@ -24,7 +24,8 @@ subtitleeditw
 to run the GUI version of Subtitle Edit, or
 
 ```
-subtitleeditw /help```
+subtitleeditw /help
+```
 
 to run the CLI version of Subtitle Edit.
 
