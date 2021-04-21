@@ -7,7 +7,7 @@ Way to use [Subtitle Edit](https://github.com/SubtitleEdit/subtitleedit/) on mac
 ## Installation
 
 1. Download and unzip [this repository](https://github.com/twardoch/subtitle-edit-mac-wine/archive/refs/heads/main.zip)
-2. Double-click `install-mac.command`
+2. Ctrl+click `install-mac.command` and choose _Open_. If asked for confirmation, choose _Open_.
 3. When asked, go to the [Subtitle Edit releases page](https://github.com/SubtitleEdit/subtitleedit/releases)
 4. In the _Latest releases_ section, right click the ZIP for the Portable version, for example [`SE360.zip`](https://github.com/SubtitleEdit/subtitleedit/releases/download/3.6.0/SE360.zip) and copy the link
 5. Paste the link to Terminal and press Enter.
