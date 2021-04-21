@@ -30,6 +30,17 @@ subtitleeditw /help
 
 to run the CLI version of Subtitle Edit.
 
+## Examples
+
+Convert all .srt subtitles in INFOLDER into .srt in the OUTSUBFOLDER and perform some fixes. 
+
+```
+mkdir -p OUTSUBFOLDER && subtitleeditw /convert '*.srt' subrip /inputfolder:INFOLDER /outputfolder:OUTSUBFOLDER /overwrite /FixCommonErrors /MergeSameTimeCodes /MergeSameTexts /MergeShortLines /RedoCasing;
+```
+
+_Note: Use single quotes to surround `'*.srt'`_
+
+
 ## Credits
 
 - Shell scripts written by Adam Twardoch
