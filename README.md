@@ -35,7 +35,7 @@ to run the CLI version of Subtitle Edit.
 Convert all .srt subtitles in INFOLDER into .srt in the OUTFOLDER and perform some fixes (replace the `.` in `INFOLDER=` and `OUTFOLDER=` with actual folder paths).
 
 ```
-INFOLDER=. && OUTFOLDER=. && mkdir -p OUTFOLDER && subtitleeditw /convert '*.srt' subrip /inputfolder:"$INFOLDER" /outputfolder:"$OUTFOLDER" /overwrite /FixCommonErrors /MergeSameTimeCodes /MergeSameTexts /MergeShortLines /RedoCasing;
+INFOLDER=. && OUTFOLDER=. && mkdir -p "$OUTFOLDER" && subtitleeditw /convert '*.srt' subrip /inputfolder:"$INFOLDER" /outputfolder:"$OUTFOLDER" /overwrite /FixCommonErrors /MergeSameTimeCodes /MergeSameTexts /MergeShortLines /RedoCasing;
 ```
 
 _Note: Use single quotes to surround `'*.srt'`_
