@@ -30,6 +30,7 @@ export WINEPREFIX=${HOME}/.wine/
 # Install .NET 4.8
 
 winetricks -q dotnet48
+winetricks -q lavfilters
 winetricks -q win10
 
 # Install Subtitle Edit portable

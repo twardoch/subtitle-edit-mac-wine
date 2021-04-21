@@ -14,15 +14,20 @@ Way to use [Subtitle Edit](https://github.com/SubtitleEdit/subtitleedit/) on mac
 6. Wait until the installation of Homebrew, Wine, winetricks and .NET is completed.
 7. Remove the downloaded ZIP and the unzipped folder.
 
-## Usage
+## Running GUI app
 
-Now open Terminal.app and type:
+Open Terminal.app and type:
 
 ```
 subtitleeditw
 ```
 
-to run the GUI version of Subtitle Edit, or
+to run the GUI version of Subtitle Edit. _Note: Use _Video > Undock video controls_ if you cannot see the video playing after you open it.
+
+
+## Using in command-line
+
+Open Terminal.app and type:
 
 ```
 subtitleeditw /help
@@ -30,7 +35,7 @@ subtitleeditw /help
 
 to run the CLI version of Subtitle Edit.
 
-## Examples
+### Example
 
 Convert all .srt subtitles in INFOLDER into .srt in the OUTFOLDER and perform some fixes (replace the `.` in `INFOLDER=` and `OUTFOLDER=` with actual folder paths).
 
