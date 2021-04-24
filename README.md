@@ -1,6 +1,6 @@
 # subtitle-edit-mac-wine
 
-Way to use [Subtitle Edit](https://github.com/SubtitleEdit/subtitleedit/) on macOS 11
+Way to use [Subtitle Edit](https://github.com/SubtitleEdit/subtitleedit/) on macOS 10.12—11.
 
 ![](./subtitle-edit.png)
 
