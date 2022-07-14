@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-WINEPREFIX=${HOME}/.wine/ wine64 "C:/Program Files/Subtitle Edit/SubtitleEdit.exe" "$@" 2>/dev/null
+WINEPREFIX=${HOME}/.wine-se/ wine64 "C:/Program Files/Subtitle Edit/SubtitleEdit.exe" "$@" 2>/dev/null

@@ -25,13 +25,13 @@ brew install tesseract
 brew install --cask wine-crossover
 brew install winetricks
 
-export WINEPREFIX=${HOME}/.wine/
+export WINEPREFIX=${HOME}/.wine-se/
 
 # Install .NET 4.8
 
-winetricks -q dotnet48
-winetricks -q lavfilters
-winetricks -q win10
+winetricks -q --force dotnet48
+winetricks -q --force lavfilters
+winetricks -q --force win10
 
 # Install Subtitle Edit portable
 
@@ -46,4 +46,3 @@ echo "subtitleeditw"
 echo "to run the GUI or"
 echo "subtitleeditw /help"
 echo "to run the CLI"
-
