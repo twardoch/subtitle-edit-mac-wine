@@ -1,0 +1,192 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+install-mac.command
+LICENSE
+README.md
+subtitleeditw
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="install-mac.command">
+#!/usr/bin/env bash
+dir=${0%/*}
+if [ "$dir" = "$0" ]; then
+  dir="."
+fi
+cd "$dir"
+
+echo "INSTALLING https://github.com/SubtitleEdit/ on macOS"
+echo
+echo "1. Go to https://github.com/SubtitleEdit/subtitleedit/releases"
+echo "2. In 'Latest release', right click the ZIP with 'Portable version' (e.g. 'SE360.zip') and copy link address"
+echo "3. Paste it here and press Enter:"
+read SEZIPURL
+
+echo "Thank you, proceeding with installation..."
+
+# Install Homebrew
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install the gcenx/wine build
+
+brew tap gcenx/wine
+brew install tesseract
+brew install --cask wine-crossover
+brew install winetricks
+
+export WINEPREFIX=${HOME}/.wine-se/
+
+# Install .NET 4.8
+
+winetricks -q --force dotnet48
+winetricks -q --force lavfilters
+winetricks -q --force win10
+
+# Install Subtitle Edit portable
+
+curl -L -o "$dir/se.zip" "$SEZIPURL"
+unzip "$dir/se.zip" -d "$WINEPREFIX/drive_c/Program Files/Subtitle Edit/"
+rm "$dir/se.zip"
+
+cp "$dir/subtitleeditw" "/usr/local/bin"
+
+echo "Ready! Now open Terminal.app and type"
+echo "subtitleeditw"
+echo "to run the GUI or"
+echo "subtitleeditw /help"
+echo "to run the CLI"
+</file>
+
+<file path="LICENSE">
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <https://unlicense.org>
+</file>
+
+<file path="README.md">
+# subtitle-edit-mac-wine
+
+Way to use [Subtitle Edit](https://github.com/SubtitleEdit/subtitleedit/) on macOS 10.12—11.
+
+![](./subtitle-edit.png)
+
+## Installation
+
+1. Download and unzip [this repository](https://github.com/twardoch/subtitle-edit-mac-wine/archive/refs/heads/main.zip)
+2. Ctrl+click `install-mac.command` and choose _Open_. If asked for confirmation, choose _Open_.
+3. When asked, go to the [Subtitle Edit releases page](https://github.com/SubtitleEdit/subtitleedit/releases)
+4. In the _Latest releases_ section, right click the ZIP for the Portable version, for example [`SE360.zip`](https://github.com/SubtitleEdit/subtitleedit/releases/download/3.6.0/SE360.zip) and copy the link
+5. Paste the link to Terminal and press Enter.
+6. Wait until the installation of Homebrew, Wine, winetricks and .NET is completed.
+7. Remove the downloaded ZIP and the unzipped folder.
+
+## Running GUI app
+
+Open Terminal.app and type:
+
+```
+subtitleeditw
+```
+
+to run the GUI version of Subtitle Edit. _Note: Use _Video > Undock video controls_ if you cannot see the video playing after you open it.
+
+
+## Using in command-line
+
+Open Terminal.app and type:
+
+```
+subtitleeditw /help
+```
+
+to run the CLI version of Subtitle Edit.
+
+### Example
+
+Convert all .srt subtitles in INFOLDER into .srt in the OUTFOLDER and perform some fixes (replace the `.` in `INFOLDER=` and `OUTFOLDER=` with actual folder paths).
+
+```
+INFOLDER=. && OUTFOLDER=. && mkdir -p "$OUTFOLDER" && subtitleeditw /convert '*.srt' subrip /inputfolder:"$INFOLDER" /outputfolder:"$OUTFOLDER" /overwrite /FixCommonErrors /MergeSameTimeCodes /MergeSameTexts /MergeShortLines /RedoCasing;
+```
+
+_Note: Use single quotes to surround `'*.srt'`_
+
+
+## Credits
+
+- Shell scripts written by Adam Twardoch
+- Only tested on my machine, no guarantee
+- [The Unlicense](./LICENSE)
+- Subtitle Edit is made by Nikolaj Lynge Olsson
+</file>
+
+<file path="subtitleeditw">
+#!/usr/bin/env bash
+WINEPREFIX=${HOME}/.wine-se/ wine64 "C:/Program Files/Subtitle Edit/SubtitleEdit.exe" "$@" 2>/dev/null
+</file>
+
+</files>
