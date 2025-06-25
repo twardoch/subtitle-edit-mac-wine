@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-WINEPREFIX=${HOME}/.wine-se/ wine64 "C:/Program Files/Subtitle Edit/SubtitleEdit.exe" "$@" 2>/dev/null
+# This script launches Subtitle Edit using Wine.
+# Error output (stderr) is intentionally not redirected to /dev/null,
+# so users can see any error messages from Wine or Subtitle Edit.
+WINEPREFIX=${HOME}/.wine-se/ wine64 "C:/Program Files/Subtitle Edit/SubtitleEdit.exe" "$@"
